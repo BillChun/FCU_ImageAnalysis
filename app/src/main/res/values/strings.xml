@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">FCU_Case</string>
+
+    <string-array name="questions">
+    <item>適合約會</item>
+    <item>適合闔家出遊賞風景</item>
+    <item>適合吃飯</item>
+    <item>適合看夕陽</item>
+    <item>適合看書</item>
+    </string-array>
+    <string name="Catch_BT">拍照</string>
+    <string name="btCusAdd">新增資料</string>
+    <string name="btPtIns"></string>
+    <string name="btPtCancel">重新輸入</string>
+
+</resources>
