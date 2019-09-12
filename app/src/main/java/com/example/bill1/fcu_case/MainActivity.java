@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,6 +13,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -19,6 +23,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -59,41 +64,49 @@ import javax.net.ssl.HttpsURLConnection;
 public class MainActivity extends AppCompatActivity {
 
     private static final String DBname = "DB2019.db";
-    private static final int  DBversion = 1;
+    private static final int DBversion = 1;
     private static final String TBname = "DB2019";
     private EditText etUseNum;
     private EditText etUseName;
     private EditText etUseSoc;
     private EditText etUseFeel;
     private EditText etUseAdd;
-    private Button btAdd,btCancel;
+    private Button btAdd, btCancel;
     private SQLdata dbHper;
 
     private SeekBar seekBar;
     private TextView textView;
 
+    private Button btnStart;
+    private Button btnStop;
 
 
     ImageView image_view;
     Bitmap bitmap;
     //EditText imageName;
     Button GetImageFromGalleryButton, UploadImageOnServerButton;
-    ByteArrayOutputStream byteArrayOutputStream ;
+    ByteArrayOutputStream byteArrayOutputStream;
     byte[] byteArray;
-    String ConvertImage ;
-    ProgressDialog progressDialog ;
-    String ImageTag = "image_tag" ;
-    String ImageName = "image_data" ;
+    String ConvertImage;
+    ProgressDialog progressDialog;
+    String ImageTag = "image_tag";
+    String ImageName = "image_data";
     String GetImageNameFromEditText;
     URL url;
-    HttpURLConnection httpURLConnection ;
+    HttpURLConnection httpURLConnection;
     OutputStream outputStream;
-    BufferedWriter bufferedWriter ;
-    BufferedReader bufferedReader ;
-    int RC ;
+    BufferedWriter bufferedWriter;
+    BufferedReader bufferedReader;
+    int RC;
     StringBuilder stringBuilder;
     boolean check = true;
     private int GALLERY = 1, CAMERA = 2;
+
+
+
+
+
+
 
 
 
@@ -102,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
       /*  DH = new SQLdata(this);
         add("123");*/
+
+
 
 
 
@@ -119,6 +134,8 @@ public class MainActivity extends AppCompatActivity {
         image_view = (ImageView) findViewById(R.id.image_view);
         seekBar = (SeekBar) findViewById(R.id.progress);
         textView = (TextView) findViewById(R.id.text1);
+
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

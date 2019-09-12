@@ -10,98 +10,141 @@
     android:paddingRight="10sp"
     android:paddingTop="20sp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/textNum"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your Project Number" />
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/textName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            <EditText
+                android:id="@+id/textNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your Project Number" />
 
-            android:hint="Enter your theme" />
+            <EditText
+                android:id="@+id/textName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-    <Spinner
-        android:id="@+id/idspinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+                android:hint="Enter your theme" />
 
-    <SeekBar
+            <Spinner
+                android:id="@+id/idspinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        android:id="@+id/progress"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_toLeftOf="@+id/text1"
-        android:max="10"
+            <SeekBar
 
-        android:progress="5"
-        android:maxHeight="1dp"
-        android:minHeight="1dp"
-        android:paddingLeft="12dp"
-        android:paddingTop="3dp"
-        android:paddingRight="12dp"
-        android:paddingBottom="3dp"
-        android:progressDrawable="@drawable/layer_progress"
-        android:thumb="@drawable/shape_circle" />
+                android:id="@+id/progress"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_toLeftOf="@+id/text1"
+                android:max="10"
 
-    <TextView
-        android:id="@+id/text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:gravity="left"
-        android:padding="6dp"
-        android:text="感受程度指數: 0"
-        android:textColor="#16BC5C"
-        android:textSize="16dp" />
+                android:maxHeight="1dp"
+                android:minHeight="1dp"
+                android:paddingLeft="12dp"
+                android:paddingTop="3dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="3dp"
+                android:progress="5"
+                android:progressDrawable="@drawable/layer_progress"
+                android:thumb="@drawable/shape_circle" />
 
-    <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="385dp"
-        android:layout_height="385dp"
-        android:padding="6sp"
-        android:layout_margin="2sp"
-         />
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="left"
+                android:padding="6dp"
+                android:text="感受程度指數: 0"
+                android:textColor="#16BC5C"
+                android:textSize="16dp" />
 
-</LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/catch_BT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="clickSmallButton"
+                    android:text="@string/Catch_BT" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="385dp"
+                android:layout_height="385dp"
+                android:layout_margin="2sp"
+                android:padding="6sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btnStart" />
+
+                    <Button
+                        android:id="@+id/btnStop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btnStop" />
+
+                    <TextView
+                        android:id="@id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="定位..." />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom|center"
+                    android:orientation="horizontal">
 
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="10000dp"
-    android:orientation="horizontal"
-    android:gravity="bottom|center">
+                    <Button
+                        android:id="@+id/butAdd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="btAdd"
+                        android:text="@string/btCusAdd" />
+
+                    <Button
+                        android:id="@+id/butCan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="btCancel"
+                        android:text="@string/btPtCancel" />
 
 
-    <Button
-        android:id="@+id/catch_BT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Catch_BT"
-        android:onClick="clickSmallButton"/>
+                </LinearLayout>
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/butAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="btAdd"
-        android:text="@string/btCusAdd" />
+        </LinearLayout>
+    </ScrollView>
 
-    <Button
-        android:id="@+id/butCan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="btCancel"
-        android:text="@string/btPtCancel" />
-
-
-</LinearLayout>
 
 </RelativeLayout>
+

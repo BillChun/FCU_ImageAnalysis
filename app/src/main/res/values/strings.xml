@@ -12,5 +12,8 @@
     <string name="btCusAdd">新增資料</string>
     <string name="btPtIns"></string>
     <string name="btPtCancel">重新輸入</string>
+    <string name="text"></string>
+    <string name="btnStart">定位</string>
+    <string name="btnStop">停止</string>
 
 </resources>
