@@ -1,30 +1,19 @@
 package com.example.bill1.fcu_case;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -34,7 +23,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -43,7 +31,6 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -52,11 +39,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.sql.Blob;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -77,9 +60,18 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar seekBar;
     private TextView textView;
 
-    private Button btnStart;
+    /*private Button btnStart;
     private Button btnStop;
-
+    private TextView textView2;
+    private Location mLocation;
+    private LocationManager mLocationManager;
+    private String best;
+    private double lat = 25.0402555,lng=121.512377;*/
+    private TextView textLoc;
+    private Button button1;
+    private LocationManager locationManager;
+    private String commandStr;
+    public static final int My_PERMISSION_COARSE_LOCATION = 11;
 
     ImageView image_view;
     Bitmap bitmap;
@@ -103,32 +95,28 @@ public class MainActivity extends AppCompatActivity {
     private int GALLERY = 1, CAMERA = 2;
 
 
-
-
-
-
-
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-      /*  DH = new SQLdata(this);
-        add("123");*/
+
+        textLoc = (TextView) findViewById(R.id.textLoc);
+        button1 = (Button)findViewById(R.id.button1);
+        commandStr = LocationManager.GPS_PROVIDER;
+
+       /* btnStart = (Button)findViewById(R.id.btnStart);
+        btnStop = (Button)findViewById(R.id.btnStop);
+        textView2 = (TextView)findViewById(R.id.text);
+        btnStart.setOnClickListener(btnClickListener);
+        btnStop.setOnClickListener(btnClickListener);*/
 
 
-
-
-
-
-
-
-        Spinner spinner = (Spinner)findViewById(R.id.idspinner);
+       // commandStr = LocationManager.GPS_PROVIDER;
+            commandStr = LocationManager.NETWORK_PROVIDER;
+        Spinner spinner = (Spinner) findViewById(R.id.idspinner);
         ArrayAdapter<CharSequence> lunchList = ArrayAdapter.createFromResource(MainActivity.this,
                 R.array.questions,
                 android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(lunchList);
-
 
 
         image_view = (ImageView) findViewById(R.id.image_view);
@@ -140,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // 当拖动条的滑块位置发生改变时触发该方法,在这里直接使用参数progress，即当前滑块代表的进度值
-                textView.setText("感受程度指數: " + Integer.toString(progress-5));
+                textView.setText("感受程度指數: " + Integer.toString(progress - 5));
             }
 
             @Override
@@ -155,15 +143,45 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        button1.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick (View view)
+            {
+                locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+                if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                        && ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]
+                                    {
+                                            Manifest.permission.ACCESS_COARSE_LOCATION
+                                    },
+                            My_PERMISSION_COARSE_LOCATION);
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                locationManager.requestLocationUpdates(commandStr, 1000, 0, locationListener);
+                Location location = locationManager.getLastKnownLocation(commandStr);
+                if (location != null)
+                    textLoc.setText("經度" + location.getLongitude() + "\n緯度" + location.getLatitude());
+                else
+                    textLoc.setText("定位中!!!");
+            }
+        });
+
         byteArrayOutputStream = new ByteArrayOutputStream();
 
-        etUseNum = (EditText)findViewById(R.id.textNum);
-        etUseName = (EditText)findViewById(R.id.textName);
+        etUseNum = (EditText) findViewById(R.id.textNum);
+        etUseName = (EditText) findViewById(R.id.textName);
         //etUseFeel = (EditText)findViewById(R.id.idspinner);
         //etUseSoc = (EditText)findViewById(R.id.progress);
-        UploadImageOnServerButton = (Button)findViewById(R.id.butAdd);
-        GetImageFromGalleryButton = (Button)findViewById(R.id.catch_BT);
-        btCancel = (Button)findViewById(R.id.butCan);
+        UploadImageOnServerButton = (Button) findViewById(R.id.butAdd);
+        GetImageFromGalleryButton = (Button) findViewById(R.id.catch_BT);
+        btCancel = (Button) findViewById(R.id.butCan);
         btCancel.setOnClickListener(btCanListener);
 
         GetImageFromGalleryButton.setOnClickListener(new View.OnClickListener() {
@@ -187,6 +205,109 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public LocationListener locationListener = new LocationListener()
+    {
+        @Override
+        public void onLocationChanged(Location location) {
+            textLoc.setText("經度" + location.getLongitude() + "\n緯度" + location.getLatitude());
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+
+    };
+
+
+
+    /*public Button.OnClickListener btnClickListener = new Button.OnClickListener() {
+
+        public void onClick(View v) {
+            Button btn = (Button) v;
+            if (btn.getId() == R.id.btnStart) {
+                if (!gpsIsOpen())
+                    return;
+                mLocation = getLocation();
+                if (mLocation != null)
+                    textView.setText("緯度:" + mLocation.getLatitude() + "\n經度:" + mLocation.getLongitude());
+                else
+                    textView.setText("獲取不到資料...");
+            } else if (btn.getId() == R.id.btnStop) {
+                mLocationManager.removeUpdates(locationListener);
+            }
+        }
+    };
+
+    private boolean gpsIsOpen()
+    {
+        boolean bRet = true;
+        LocationManager alm = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+        if(!alm.isProviderEnabled(LocationManager.GPS_PROVIDER))
+        {
+            Toast.makeText(this,"未開啟GPS!",Toast.LENGTH_SHORT).show();
+            bRet = false;
+        }
+        else
+        {
+            Toast.makeText(this,"GPS已經開啟!",Toast.LENGTH_SHORT).show();
+        }
+        return bRet;
+    }
+
+    private Location getLocation()
+    {
+        mLocationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_FINE);
+        criteria.setAltitudeRequired(false);
+        criteria.setBearingRequired(false);
+        criteria.setCostAllowed(true);
+        criteria.setPowerRequirement(Criteria.POWER_LOW);
+        String provider = mLocationManager.getBestProvider(criteria,true);
+        Location location = mLocationManager.getLastKnownLocation(provider);
+        mLocationManager.requestLocationUpdates(provider,2000,5,locationListener);
+        return location;
+    }
+
+
+
+    private final LocationListener locationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+            if(location!=null)
+                textView2.setText("緯度:"+location.getLatitude()+"經度:"+location.getLongitude());
+            else textView2.setText("獲取不到資料"+Integer.toString(RC));
+        }
+
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    };*/
+
 
     private void showPictureDialog(){
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
