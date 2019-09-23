@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -86,10 +88,13 @@ public class MainActivity extends AppCompatActivity {
     String ImageTag = "image_tag";
     String ImageName = "image_data";
     String ImageEmotionIndex = "image_emotionIndex";
+    String ImageEmotionPoint = "image_emotionPoint" ;
+
 
 
     String GetImageNameFromEditText;
     String GetImageEmotionIndex;
+    String GetImageEmotionPoint;
 
     URL url;
     HttpURLConnection httpURLConnection;
@@ -113,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         button1 = (Button)findViewById(R.id.button1);
         commandStr = LocationManager.GPS_PROVIDER;
 
-
+        //時間設定
         textclock.setFormat24Hour("yyyy/MM/dd hh:mm");
 
             commandStr = LocationManager.NETWORK_PROVIDER;
@@ -133,8 +138,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // 当拖动条的滑块位置发生改变时触发该方法,在这里直接使用参数progress，即当前滑块代表的进度值
-                textView.setText("感受程度指數: " + Integer.toString(progress - 5));
+                textView.setText(Integer.toString(progress - 5));
             }
+
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -147,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        final TextView textView3 = textView;
 
         button1.setOnClickListener(new View.OnClickListener()
         {
@@ -205,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
 
                 GetImageNameFromEditText = etUseName.getText().toString();
                 GetImageEmotionIndex = spinner.getSelectedItem().toString();
+                GetImageEmotionPoint = textView3.getText().toString();
 
                 UploadImageToServer();
 
@@ -386,6 +394,8 @@ public class MainActivity extends AppCompatActivity {
                 HashMapParams.put(ImageName, ConvertImage);
 
                 HashMapParams.put(ImageEmotionIndex,GetImageEmotionIndex);
+
+                HashMapParams.put(ImageEmotionPoint,GetImageEmotionPoint);
 
                 String FinalData = imageProcessClass.ImageHttpRequest("http://140.134.26.3/AndroidUploadImage/upload-image-to-server.php", HashMapParams);
 
