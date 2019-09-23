@@ -85,7 +85,12 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     String ImageTag = "image_tag";
     String ImageName = "image_data";
+    String ImageEmotionIndex = "image_emotionIndex";
+
+
     String GetImageNameFromEditText;
+    String GetImageEmotionIndex;
+
     URL url;
     HttpURLConnection httpURLConnection;
     OutputStream outputStream;
@@ -112,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         textclock.setFormat24Hour("yyyy/MM/dd hh:mm");
 
             commandStr = LocationManager.NETWORK_PROVIDER;
-        Spinner spinner = (Spinner) findViewById(R.id.idspinner);
+        final Spinner spinner = (Spinner) findViewById(R.id.idspinner);
         ArrayAdapter<CharSequence> lunchList = ArrayAdapter.createFromResource(MainActivity.this,
                 R.array.questions,
                 android.R.layout.simple_spinner_dropdown_item);
@@ -199,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 GetImageNameFromEditText = etUseName.getText().toString();
+                GetImageEmotionIndex = spinner.getSelectedItem().toString();
 
                 UploadImageToServer();
 
@@ -378,6 +384,8 @@ public class MainActivity extends AppCompatActivity {
                 HashMapParams.put(ImageTag, GetImageNameFromEditText);
 
                 HashMapParams.put(ImageName, ConvertImage);
+
+                HashMapParams.put(ImageEmotionIndex,GetImageEmotionIndex);
 
                 String FinalData = imageProcessClass.ImageHttpRequest("http://140.134.26.3/AndroidUploadImage/upload-image-to-server.php", HashMapParams);
 

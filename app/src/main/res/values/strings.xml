@@ -2,11 +2,12 @@
     <string name="app_name">FCU_Case</string>
 
     <string-array name="questions">
-    <item>適合約會</item>
-    <item>適合闔家出遊賞風景</item>
-    <item>適合吃飯</item>
-    <item>適合看夕陽</item>
-    <item>適合看書</item>
+    <item>Hung out with friend</item>
+    <item>Sanitary Environment</item>
+    <item>Beverage</item>
+    <item>Taiwan Local Delicacies</item>
+    <item>Area</item>
+
     </string-array>
     <string name="Catch_BT">拍照</string>
     <string name="btCusAdd">新增資料</string>
