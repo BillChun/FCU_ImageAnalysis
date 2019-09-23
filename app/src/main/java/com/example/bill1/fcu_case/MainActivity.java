@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
     private double lat = 25.0402555,lng=121.512377;*/
     private TextView textLoc;
     private Button button1;
+    private Button reset;
     private LocationManager locationManager;
     private String commandStr;
     public static final int My_PERMISSION_COARSE_LOCATION = 11;
@@ -116,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        reset = (Button)findViewById(R.id.butCan);
 
         textclock = (TextClock)findViewById(R.id.textclock);
         textLoc = (TextView) findViewById(R.id.textLoc);
@@ -229,6 +232,16 @@ public class MainActivity extends AppCompatActivity {
 
                 UploadImageToServer();
 
+            }
+        });
+
+        reset.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                Intent restartIntent = getBaseContext().getPackageManager()
+                        .getLaunchIntentForPackage(getBaseContext().getPackageName());
+                restartIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(restartIntent);
             }
         });
     }
@@ -508,6 +521,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+
+
+
 
 
 }
