@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Address;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -89,12 +90,15 @@ public class MainActivity extends AppCompatActivity {
     String ImageName = "image_data";
     String ImageEmotionIndex = "image_emotionIndex";
     String ImageEmotionPoint = "image_emotionPoint" ;
-
+    String ImageLongitude = "image_longitude";
+    String ImageLatitude = "image_latitude";
 
 
     String GetImageNameFromEditText;
     String GetImageEmotionIndex;
     String GetImageEmotionPoint;
+    String GetImageLongitude;
+    String GetImageLatitude;
 
     URL url;
     HttpURLConnection httpURLConnection;
@@ -182,8 +186,15 @@ public class MainActivity extends AppCompatActivity {
                     textLoc.setText("經度" + location.getLongitude() + "\n緯度" + location.getLatitude());
                 else
                     textLoc.setText("定位中!!!");
+
+                GetImageLongitude  = String.valueOf(location.getLongitude());
+                GetImageLatitude = String.valueOf(location.getLatitude());
             }
         });
+
+
+
+
 
         byteArrayOutputStream = new ByteArrayOutputStream();
 
@@ -214,6 +225,8 @@ public class MainActivity extends AppCompatActivity {
                 GetImageEmotionIndex = spinner.getSelectedItem().toString();
                 GetImageEmotionPoint = textView3.getText().toString();
 
+
+
                 UploadImageToServer();
 
             }
@@ -243,6 +256,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };
+
+
 
 
 
@@ -396,6 +411,10 @@ public class MainActivity extends AppCompatActivity {
                 HashMapParams.put(ImageEmotionIndex,GetImageEmotionIndex);
 
                 HashMapParams.put(ImageEmotionPoint,GetImageEmotionPoint);
+
+                HashMapParams.put(ImageLongitude,GetImageLongitude);
+
+                HashMapParams.put(ImageLatitude,GetImageLatitude);
 
                 String FinalData = imageProcessClass.ImageHttpRequest("http://140.134.26.3/AndroidUploadImage/upload-image-to-server.php", HashMapParams);
 
