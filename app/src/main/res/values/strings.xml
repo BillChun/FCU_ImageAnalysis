@@ -2,11 +2,11 @@
     <string name="app_name">FCU_Case</string>
 
     <string-array name="questions">
-    <item>Hung out with friend</item>
-    <item>Sanitary Environment</item>
-    <item>Beverage</item>
-    <item>Taiwan Local Delicacies</item>
-    <item>Area</item>
+    <item>適合和同學一同前來</item>
+    <item>乾淨的衛生環境</item>
+    <item>眾多飲料的選擇</item>
+    <item>適合吃美食的地方</item>
+    <item>環境寬闊程度</item>
 
     </string-array>
     <string name="Catch_BT">拍照</string>
