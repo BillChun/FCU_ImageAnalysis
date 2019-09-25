@@ -124,11 +124,11 @@ public class MainActivity extends AppCompatActivity {
         textLoc = (TextView) findViewById(R.id.textLoc);
         button1 = (Button)findViewById(R.id.button1);
         //commandStr = LocationManager.GPS_PROVIDER;
-
+        commandStr = LocationManager.NETWORK_PROVIDER;
         //時間設定
         textclock.setFormat24Hour("yyyy/MM/dd hh:mm");
 
-            commandStr = LocationManager.NETWORK_PROVIDER;
+
         final Spinner spinner = (Spinner) findViewById(R.id.idspinner);
         ArrayAdapter<CharSequence> lunchList = ArrayAdapter.createFromResource(MainActivity.this,
                 R.array.questions,
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
                     // for ActivityCompat#requestPermissions for more details.
                     return;
                 }
-                locationManager.requestLocationUpdates(commandStr, 1000, 1, locationListener);
+                locationManager.requestLocationUpdates(commandStr, 1000, 0, locationListener);
                 Location location = locationManager.getLastKnownLocation(commandStr);
                 if (location != null)
                     textLoc.setText("經度" + location.getLongitude() + "\n緯度" + location.getLatitude());
