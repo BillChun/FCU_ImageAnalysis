@@ -187,6 +187,8 @@ public class MainActivity extends AppCompatActivity {
                 Location location = locationManager.getLastKnownLocation(commandStr);
                 if (location != null)
                     textLoc.setText("經度" + location.getLongitude() + "\n緯度" + location.getLatitude());
+                    //textLoc.setText(commandStr);
+
                 else
                     textLoc.setText("定位中!!!");
 

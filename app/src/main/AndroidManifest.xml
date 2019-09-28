@@ -3,11 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.bill1.fcu_case">
 
-    <!-- 讀取低精確度位置資訊授權 有問題需要修正(跟位置讀取有關) -->
-    <!--
- <user-permission
-        android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    -->
+
     <!-- 寫入外部儲存設備 -->
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
