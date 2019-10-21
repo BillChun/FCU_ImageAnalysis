@@ -7,8 +7,14 @@
     <item>擁擠的感覺</item>
     <item>危險吵鬧的感覺</item>
     <item>放鬆的感覺</item>
-
     </string-array>
+
+    <string-array name="questions2">
+    <item>逢甲校園</item>
+    <item>逢甲夜市</item>
+    <item>百貨商圈</item>
+    </string-array>
+
     <string name="Catch_BT">拍照</string>
     <string name="btCusAdd">新增資料</string>
     <string name="btPtIns"></string>

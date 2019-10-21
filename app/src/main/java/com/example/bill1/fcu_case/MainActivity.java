@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
     String ImageTag = "image_tag";
     String ImageName = "image_data";
     String ImageEmotionIndex = "image_emotionIndex";
+    String ImageEmotionArea = "image_emotionArea";
     String ImageEmotionPoint = "image_emotionPoint" ;
     String ImageLongitude = "image_longitude";
     String ImageLatitude = "image_latitude";
@@ -105,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
     String GetImageNameFromEditText;
     String GetImageEmotionIndex;
+    String GetImageEmotionArea;
     String GetImageEmotionPoint;
     String GetImageLongitude;
     String GetImageLatitude;
@@ -138,11 +140,18 @@ public class MainActivity extends AppCompatActivity {
         textclock.setFormat24Hour("yyyy/MM/dd hh:mm");
 
 
+
         final Spinner spinner = (Spinner) findViewById(R.id.idspinner);
         ArrayAdapter<CharSequence> lunchList = ArrayAdapter.createFromResource(MainActivity.this,
                 R.array.questions,
                 android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(lunchList);
+
+        final Spinner spinner2 = (Spinner) findViewById(R.id.spinnertwo);
+        ArrayAdapter<CharSequence> lunchList2 = ArrayAdapter.createFromResource(MainActivity.this,
+                R.array.questions2,
+                android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(lunchList2);
 
 
         image_view = (ImageView) findViewById(R.id.image_view);
@@ -238,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
                 GetImageNameFromEditText = etUseName.getText().toString();
                 GetImageEmotionIndex = spinner.getSelectedItem().toString();
                 GetImageEmotionPoint = textView3.getText().toString();
-
+                GetImageEmotionArea = spinner2.getSelectedItem().toString();
 
 
                 UploadImageToServer();
@@ -412,7 +421,7 @@ public class MainActivity extends AppCompatActivity {
     // Request to Database
     public void UploadImageToServer(){
 
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream);
 
         byteArray = byteArrayOutputStream.toByteArray();
 
@@ -451,6 +460,8 @@ public class MainActivity extends AppCompatActivity {
                 HashMapParams.put(ImageName, ConvertImage);
 
                 HashMapParams.put(ImageEmotionIndex,GetImageEmotionIndex);
+
+                HashMapParams.put(ImageEmotionArea,GetImageEmotionArea);
 
                 HashMapParams.put(ImageEmotionPoint,GetImageEmotionPoint);
 

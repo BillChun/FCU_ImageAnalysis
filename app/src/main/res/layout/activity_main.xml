@@ -28,33 +28,47 @@
             android:orientation="vertical">
 
 
-            <ImageView
-                android:id="@+id/ivIlls"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:src="@mipmap/ic_launcher"
-                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
-                android:text="Something You Need"
-                android:textColor="#C1C1C1"
-                android:textSize="18sp"
-                />
+                <ImageView
+                    android:id="@+id/ivIlls"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@mipmap/ic_launcher" />
 
-           <!-- <EditText
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="使用方式:請按照下列選項步驟填寫，再按下資料上傳按鈕即可。"
+                    android:textColor="#C1C1C1"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <!-- <EditText
                 android:id="@+id/textNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter your Project Number" />-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="8dp"
+                android:text="影像感知特徵擷取研究"
+                android:textColor="#C1C1C1"
+                android:textSize="18sp" />
 
             <LinearLayout
                 android:id="@+id/ivItemSeven"
@@ -78,7 +92,7 @@
                     android:src="@drawable/map" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
@@ -92,15 +106,11 @@
                         android:textColor="#0D1D55"
                         android:textSize="22sp" />
 
-                    <TextView
-                        android:id="@+id/ivItemSevenSubTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="6dp"
-                        android:text="IDR 12.183,99"
-                        android:textColor="#B9B9B9"
-                        android:textSize="18sp" />
+                    <Spinner
+                        android:id="@+id/spinnertwo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
 
                 </LinearLayout>
 
@@ -152,7 +162,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="0dp"
-                        android:text="定位所處位置"
+                        android:text="定位所處位置經緯度"
                         android:textColor="#B9B9B9"
                         android:textSize="18sp" />
 
@@ -182,7 +192,7 @@
                     android:layout_height="80dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/bar" />
+                    android:src="@drawable/point" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -202,7 +212,11 @@
                     <Spinner
                         android:id="@+id/idspinner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="6dp"
+                        android:textColor="#B9B9B9"
+                        android:textSize="18sp"/>
 
                 </LinearLayout>
 
@@ -229,7 +243,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:onClick="btCancel"
-                    android:src="@drawable/point" />
+                    android:src="@drawable/bar" />
 
                 <LinearLayout
                     android:layout_width="240dp"
@@ -592,24 +606,21 @@
                 android:orientation="vertical">
 
 
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="現在時間:" />
+
 
                 <TextClock
                     android:id="@+id/textclock"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="6dp"
                     android:format24Hour="yyyy/dd/MM hh:mm"
-                    android:textSize="60px" />
+                    android:textColor="#B9B9B9"
+                    android:textSize="18sp"
+                     />
 
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="4.紀錄所在位置" />
+
+
 
             <!--    <LinearLayout
                     android:layout_width="match_parent"
