@@ -109,10 +109,10 @@
 
             <ImageView
                 android:id="@+id/image_view"
-                android:layout_width="385dp"
-                android:layout_height="385dp"
-                android:layout_margin="2sp"
-                android:padding="6sp" />
+                android:layout_width="fill_parent"
+                android:layout_height="600dp"
+
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"

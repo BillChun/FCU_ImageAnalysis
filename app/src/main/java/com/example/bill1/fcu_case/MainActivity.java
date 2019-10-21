@@ -2,10 +2,13 @@ package com.example.bill1.fcu_case;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.location.Address;
 import android.location.Location;
 import android.location.LocationListener;
@@ -13,9 +16,12 @@ import android.location.LocationManager;
 import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -35,6 +41,7 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -77,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
     private Button reset;
     private LocationManager locationManager;
     private String commandStr;
+    private Context context;
     public static final int My_PERMISSION_COARSE_LOCATION = 11;
 
     ImageView image_view;
@@ -124,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         textLoc = (TextView) findViewById(R.id.textLoc);
         button1 = (Button)findViewById(R.id.button1);
         //commandStr = LocationManager.GPS_PROVIDER;
+
         commandStr = LocationManager.NETWORK_PROVIDER;
         //時間設定
         textclock.setFormat24Hour("yyyy/MM/dd hh:mm");
@@ -237,6 +246,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        if (ContextCompat.checkSelfPermission(MainActivity.this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{android.Manifest.permission.CAMERA},
+                        5);
+            }
+        }
+
         reset.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
@@ -312,9 +328,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void takePhotoFromCamera() {
+
+
         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+
         startActivityForResult(intent, CAMERA);
+
+
     }
+
+
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -339,7 +363,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
         } else if (requestCode == CAMERA) {
+
             bitmap = (Bitmap) data.getExtras().get("data");
+
+
             image_view.setImageBitmap(bitmap);
             UploadImageOnServerButton.setVisibility(View.VISIBLE);
             //  saveImage(thumbnail);
@@ -348,7 +375,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public  void onResume() {
+   /* public  void onResume() {
         super.onResume();
         if (dbHper == null) {
             dbHper = new SQLdata(this, DBname, null, DBversion);
@@ -365,7 +392,7 @@ public class MainActivity extends AppCompatActivity {
             dbHper.close();
             dbHper=null;
         }
-    }
+    }*/
 
 
 
@@ -385,7 +412,7 @@ public class MainActivity extends AppCompatActivity {
     // Request to Database
     public void UploadImageToServer(){
 
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArrayOutputStream);
 
         byteArray = byteArrayOutputStream.toByteArray();
 
@@ -524,6 +551,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 5) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Now user should be able to use camera
+
+            }
+            else {
+
+                Toast.makeText(MainActivity.this, "Unable to use Camera..Please Allow us to use Camera", Toast.LENGTH_LONG).show();
+
+            }
+        }
+    }*/
 
 
 
