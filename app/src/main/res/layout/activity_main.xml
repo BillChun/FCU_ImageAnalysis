@@ -1,24 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="10sp"
     android:paddingLeft="10sp"
     android:paddingRight="10sp"
-    android:paddingTop="20sp">
+    android:paddingTop="20sp"
+    android:background="#FAFAFA"
+    >
+
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/ivIlls"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:src="@mipmap/ic_launcher"
+                />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:text="Something You Need"
+                android:textColor="#C1C1C1"
+                android:textSize="18sp"
+                />
 
            <!-- <EditText
                 android:id="@+id/textNum"
@@ -26,7 +56,321 @@
                 android:layout_height="wrap_content"
                 android:hint="Enter your Project Number" />-->
 
-            <TextView
+
+            <LinearLayout
+                android:id="@+id/ivItemThree"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bgitemx"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivItemTwo">
+
+                <Button
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/gps"
+                    android:id="@+id/button1"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/ivItemThreeTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="現在位置"
+                        android:textColor="#0D1D55"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/textLoc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="0dp"
+                        android:text="定位所處位置"
+                        android:textColor="#B9B9B9"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ivItemFour"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bgitemx"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivItemTwo">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/bar" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="合適情境"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:textColor="#0D1D55"
+                        android:textSize="22sp" />
+
+                    <Spinner
+                        android:id="@+id/idspinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ivItemFive"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bgitemx"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivItemOne">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:onClick="btCancel"
+                    android:src="@drawable/point" />
+
+                <LinearLayout
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/ivItemFiveTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="感受程度"
+                        android:textColor="#0D1D55"
+                        android:textSize="22sp" />
+
+
+                    <SeekBar
+
+                        android:id="@+id/progress"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_toLeftOf="@+id/text1"
+                        android:max="10"
+                        android:maxHeight="1dp"
+                        android:minHeight="1dp"
+                        android:paddingLeft="12dp"
+                        android:paddingTop="3dp"
+                        android:paddingRight="12dp"
+                        android:paddingBottom="3dp"
+                        android:progress="5"
+                        android:progressDrawable="@drawable/layer_progress"
+                        android:thumb="@drawable/shape_circle" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="-30dp"
+                        android:text="-5                 0                  5"
+                        android:textColor="#B9B9B9"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="6dp"
+                            android:text="感受程度指數:"
+                            android:textColor="#B9B9B9"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/text1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_alignParentRight="true"
+                            android:gravity="left"
+                            android:padding="6dp"
+                            android:text="0(拖動指標顯示分數)"
+                            android:textColor="#16BC5C"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ivItemTwo"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bgitemx"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivItemTwo">
+
+                <Button
+                    android:id="@+id/butCan"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:onClick="btCancel"
+                    android:background="@drawable/again" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/ivItemTwoTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="重新填寫"
+                        android:textColor="#0D1D55"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/ivItemTwoSubTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="6dp"
+                        android:text="清除資料、重新載入"
+                        android:textColor="#B9B9B9"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ivItemOne"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bgitemx"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivItemOne">
+
+                <Button
+                    android:id="@+id/butAdd"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:onClick="btAdd"
+                    android:background="@drawable/upload"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/ivItemOneTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="資料上傳"
+                        android:textColor="#0D1D55"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/ivItemOneSubTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="6dp"
+                        android:text="上傳感知到資料庫"
+                        android:textColor="#B9B9B9"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+
+            <!--<TextView
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,7 +379,7 @@
             <Spinner
                 android:id="@+id/idspinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content" />-->
 
             <TextView
                 android:id="@+id/textView6"
@@ -43,7 +387,7 @@
                 android:layout_height="wrap_content"
                 android:text="2.認為符合上述的情境指數" />
 
-            <SeekBar
+            <!--<SeekBar
 
                 android:id="@+id/progress"
                 android:layout_width="match_parent"
@@ -79,7 +423,7 @@
                 android:padding="6dp"
                 android:text="0"
                 android:textColor="#16BC5C"
-                android:textSize="16dp" />
+                android:textSize="16dp" />-->
 
             <TextView
                 android:id="@+id/text2"
@@ -139,7 +483,7 @@
                     android:layout_height="wrap_content"
                     android:text="4.紀錄所在位置" />
 
-                <LinearLayout
+            <!--    <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -150,13 +494,13 @@
                         android:layout_height="wrap_content"
                         android:text="定位" />
 
-                </LinearLayout>
+                </LinearLayout>-->
 
-                <TextView
+               <!-- <TextView
                     android:id="@+id/textLoc"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="定位..." />
+                    android:text="定位..." />-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -165,27 +509,29 @@
                     android:orientation="horizontal">
 
 
-                    <Button
+                    <!--<Button
                         android:id="@+id/butAdd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="btAdd"
-                        android:text="@string/btCusAdd" />
+                        android:text="@string/btCusAdd" />-->
 
-                    <Button
+                    <!--<Button
                         android:id="@+id/butCan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="btCancel"
-                        android:text="@string/btPtCancel" />
+                        android:text="@string/btPtCancel" />-->
 
 
                 </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
+
+
     </ScrollView>
 
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
 
