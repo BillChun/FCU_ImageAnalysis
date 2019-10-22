@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textLoc;
     private Button button1;
     private Button reset;
+    private Button global;
     private LocationManager locationManager;
     private String commandStr;
     private Context context;
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         reset = (Button)findViewById(R.id.butCan);
-
+        global =(Button)findViewById(R.id.global);
         textclock = (TextClock)findViewById(R.id.textclock);
         textLoc = (TextView) findViewById(R.id.textLoc);
         button1 = (Button)findViewById(R.id.button1);
@@ -230,6 +231,17 @@ public class MainActivity extends AppCompatActivity {
         btCancel = (Button) findViewById(R.id.butCan);
         btCancel.setOnClickListener(btCanListener);
 
+
+
+        global.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                Uri uri=Uri.parse("http://140.134.26.3/webmap/fcumap.php");
+                Intent i=new Intent(Intent.ACTION_VIEW,uri);
+                startActivity(i);
+            }
+        });
+
         GetImageFromGalleryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -308,10 +320,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void showPictureDialog(){
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
-        pictureDialog.setTitle("Select Action");
+        pictureDialog.setTitle("Select Action(選擇紀錄影像方式)");
         String[] pictureDialogItems = {
-                "Photo Gallery",
-                "Camera" };
+                "Photo Gallery(本地照片)",
+                "Camera(開啟照相機)" };
         pictureDialog.setItems(pictureDialogItems,
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -384,24 +396,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-   /* public  void onResume() {
-        super.onResume();
-        if (dbHper == null) {
-            dbHper = new SQLdata(this, DBname, null, DBversion);
 
-        }
-
-    }
-
-    public void onPause()
-    {
-        super.onPause();
-        if(dbHper!=null)
-        {
-            dbHper.close();
-            dbHper=null;
-        }
-    }*/
 
 
 

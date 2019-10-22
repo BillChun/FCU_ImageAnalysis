@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">影像感知特徵擷取</string>
+    <string name="app_name">Image Analysis</string>
 
     <string-array name="questions">
     <item>適合讀書的感覺</item>

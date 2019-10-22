@@ -213,10 +213,7 @@
                         android:id="@+id/idspinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="6dp"
-                        android:textColor="#B9B9B9"
-                        android:textSize="18sp"/>
+                        />
 
                 </LinearLayout>
 
@@ -509,96 +506,64 @@
 
             </LinearLayout>
 
-
-
-
-            <!--<TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="1.請選擇適合您在旅遊時的情境" />
-
-            <Spinner
-                android:id="@+id/idspinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />-->
-
-            <!--<TextView
-                  android:id="@+id/textView6"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:text="2.認為符合上述的情境指數" />
-
-          <SeekBar
-
-                  android:id="@+id/progress"
-                  android:layout_width="match_parent"
-                  android:layout_height="100dp"
-                  android:layout_toLeftOf="@+id/text1"
-                  android:max="10"
-
-                  android:maxHeight="1dp"
-                  android:minHeight="1dp"
-                  android:paddingLeft="12dp"
-                  android:paddingTop="3dp"
-                  android:paddingRight="12dp"
-                  android:paddingBottom="3dp"
-                  android:progress="5"
-                  android:progressDrawable="@drawable/layer_progress"
-                  android:thumb="@drawable/shape_circle" />
-
-              <TextView
-                  android:id="@+id/textView2"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:textColor="#16BC5C"
-                  android:text="感受程度指數:"
-                  android:padding="6dp"
-                  android:textSize="16dp"/>
-
-              <TextView
-                  android:id="@+id/text1"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:layout_alignParentRight="true"
-                  android:gravity="left"
-                  android:padding="6dp"
-                  android:text="0"
-                  android:textColor="#16BC5C"
-                  android:textSize="16dp" />-->
-
-            <!--<TextView
-                android:id="@+id/text2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="3.輸入照片名稱以及拍下圖像" />
-
-            <EditText
-                android:id="@+id/textName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:hint="Enter your picture name..." />
-
             <LinearLayout
+                android:id="@+id/ivItemEight"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="90dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bgitemx"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivItemTwo">
 
                 <Button
-                    android:id="@+id/catch_BT"
+                    android:id="@+id/global"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:onClick="global"
+                    android:background="@drawable/global" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="clickSmallButton"
-                    android:text="@string/Catch_BT" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/ivItemEightTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="網頁圖層"
+                        android:textColor="#0D1D55"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/ivItemEightSubTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="0dp"
+                        android:text="開啟網頁地圖查看圖片相關資訊"
+                        android:textColor="#B9B9B9"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+
+
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/image_view"
-                android:layout_width="fill_parent"
-                android:layout_height="600dp"
 
-                /> -->
+
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -616,30 +581,29 @@
                     android:layout_marginTop="6dp"
                     android:format24Hour="yyyy/dd/MM hh:mm"
                     android:textColor="#B9B9B9"
-                    android:textSize="18sp"
-                     />
-
-
-
-
-            <!--    <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/button1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="定位" />
-
-                </LinearLayout>-->
-
-               <!-- <TextView
-                    android:id="@+id/textLoc"
+                    android:textSize="18sp" />
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="定位..." />-->
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="0dp"
+                    android:text="逢甲大學資訊工程學系 "
+                    android:textColor="#B9B9B9"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="0dp"
+                    android:text="影像感知特徵擷取研究小組"
+                    android:textColor="#B9B9B9"
+                    android:textSize="18sp" />
+
+
+
+
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -648,19 +612,7 @@
                     android:orientation="horizontal">
 
 
-                    <!--<Button
-                        android:id="@+id/butAdd"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="btAdd"
-                        android:text="@string/btCusAdd" />-->
 
-                    <!--<Button
-                        android:id="@+id/butCan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="btCancel"
-                        android:text="@string/btPtCancel" />-->
 
 
                 </LinearLayout>
