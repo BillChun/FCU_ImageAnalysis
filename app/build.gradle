@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     //compileSdkVersion versions.compileSdkVersion
 //    buildToolsVersion versions.buildToolsVersion
     defaultConfig {
         applicationId "com.example.bill1.fcu_case"
-        minSdkVersion 23
+        minSdkVersion 21
         //minSdkVersion versions.minSdkVersion
-        targetSdkVersion 28
+        targetSdkVersion 29
         //targetSdkVersion versions.targetSdkVersion
         versionCode 1
         versionName "1.0"
