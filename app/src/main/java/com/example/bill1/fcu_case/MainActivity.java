@@ -16,6 +16,8 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.Image;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -149,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
         global =(Button)findViewById(R.id.global);
         textclock = (TextClock)findViewById(R.id.textclock);
         textLoc = (TextView) findViewById(R.id.textLoc);
-        button1 = (Button)findViewById(R.id.button1);
 
 
         //commandStr = LocationManager.NETWORK_PROVIDER;
@@ -289,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
         UploadImageOnServerButton = (Button) findViewById(R.id.butAdd);
         GetImageFromGalleryButton = (Button) findViewById(R.id.catch_BT);
         btCancel = (Button) findViewById(R.id.butCan);
-        btCancel.setOnClickListener(btCanListener);
+        //btCancel.setOnClickListener(btCanListener);
 
 
 
@@ -320,27 +321,36 @@ public class MainActivity extends AppCompatActivity {
                 GetImageEmotionIndex = spinner.getSelectedItem().toString();
                 GetImageEmotionPoint = textView3.getText().toString();
                 GetImageEmotionArea = spinner2.getSelectedItem().toString();
+                ConnectivityManager mConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
 
-
-                if(GetImageNameFromEditText.matches("")) {
+                if(mNetworkInfo == null)
+                {
+                    Toast toast = Toast.makeText(MainActivity.this, "行動數據或WIFI尚未開請!!", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                else if(GetImageNameFromEditText.matches("") || bitmap == null) {
+                    Toast toast = Toast.makeText(MainActivity.this, "尚未放入照片及名稱，請再次確認!!", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                else if(GetImageNameFromEditText.matches("")) {
                     Toast toast = Toast.makeText(MainActivity.this, "沒有填入照片名稱，請再次確認!!", Toast.LENGTH_LONG);
                     toast.show();
-                }else if(bitmap == null)
+                }
+                else if(bitmap == null)
                 {
                     Toast toast = Toast.makeText(MainActivity.this, "沒有選擇照片，請再次確認!!", Toast.LENGTH_LONG);
                     toast.show();
                 }
-
                 else if(GetImageLongitude == null&&GetImageLatitude == null)
                 {
                     Toast toast = Toast.makeText(MainActivity.this, "請打開手機GPS，確認有出現經緯度數值，重新上傳!!", Toast.LENGTH_LONG);
                     toast.show();
                 }
-                else{
+                else
+                {
                     UploadImageToServer();
-
                 }
-
             }
         });
 
@@ -481,19 +491,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private View.OnClickListener btCanListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-                etUseName.setText("");
-                etUseNum.setText("");
-                etUseFeel.setText("");
-                etUseSoc.setText("");
-            }
-        };
 
-    //上傳相片
 
-    // Request to Database
+
+
+    // 上傳資料到資料庫
     public void UploadImageToServer() {
 
         bitmap.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream);
