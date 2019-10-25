@@ -3,6 +3,7 @@ package com.example.bill1.fcu_case;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,6 +23,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -206,6 +208,10 @@ public class MainActivity extends AppCompatActivity {
                 textLoc.setText("經度" + location.getLongitude() + "\n緯度" + location.getLatitude());
                 GetImageLongitude  = String.valueOf(location.getLongitude());
                 GetImageLatitude = String.valueOf(location.getLatitude());
+                /*if(String.valueOf(location.getLongitude()).matches("")||String.valueOf(location.getLatitude()).matches("")) {
+                    Toast toast = Toast.makeText(MainActivity.this, "GPS，請再次確認!!", Toast.LENGTH_LONG);
+                    toast.show();
+                }*/
 
             }
 
@@ -316,7 +322,24 @@ public class MainActivity extends AppCompatActivity {
                 GetImageEmotionArea = spinner2.getSelectedItem().toString();
 
 
-                UploadImageToServer();
+                if(GetImageNameFromEditText.matches("")) {
+                    Toast toast = Toast.makeText(MainActivity.this, "沒有填入照片名稱，請再次確認!!", Toast.LENGTH_LONG);
+                    toast.show();
+                }else if(bitmap == null)
+                {
+                    Toast toast = Toast.makeText(MainActivity.this, "沒有選擇照片，請再次確認!!", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+
+                else if(GetImageLongitude == null&&GetImageLatitude == null)
+                {
+                    Toast toast = Toast.makeText(MainActivity.this, "請打開手機GPS，確認有出現經緯度數值，重新上傳!!", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                else{
+                    UploadImageToServer();
+
+                }
 
             }
         });
@@ -430,13 +453,13 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
                     // String path = saveImage(bitmap);
-                    //Toast.makeText(MainActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "選擇圖片成功!", Toast.LENGTH_SHORT).show();
                     image_view.setImageBitmap(bitmap);
                     UploadImageOnServerButton.setVisibility(View.VISIBLE);
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(MainActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "選擇圖片失敗!", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -448,7 +471,7 @@ public class MainActivity extends AppCompatActivity {
             image_view.setImageBitmap(bitmap);
             UploadImageOnServerButton.setVisibility(View.VISIBLE);
             //  saveImage(thumbnail);
-            //Toast.makeText(ShadiRegistrationPart5.this, "Image Saved!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "拍攝成功!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -471,7 +494,7 @@ public class MainActivity extends AppCompatActivity {
     //上傳相片
 
     // Request to Database
-    public void UploadImageToServer(){
+    public void UploadImageToServer() {
 
         bitmap.compress(Bitmap.CompressFormat.JPEG, 60, byteArrayOutputStream);
 
@@ -479,14 +502,18 @@ public class MainActivity extends AppCompatActivity {
 
         ConvertImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-        class AsyncTaskUploadClass extends AsyncTask<Void,Void,String> {
+
+
+
+
+        class AsyncTaskUploadClass extends AsyncTask<Void, Void, String> {
 
             @Override
             protected void onPreExecute() {
 
                 super.onPreExecute();
 
-                progressDialog = ProgressDialog.show(MainActivity.this,"Image is Uploading","Please Wait",false,false);
+                progressDialog = ProgressDialog.show(MainActivity.this, "資料正在上傳...", "Please Wait", false, false);
             }
 
             @Override
@@ -496,30 +523,31 @@ public class MainActivity extends AppCompatActivity {
 
                 progressDialog.dismiss();
 
-                Toast.makeText(MainActivity.this,string1,Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, string1, Toast.LENGTH_LONG).show();
 
             }
 
             @Override
             protected String doInBackground(Void... params) {
 
+
                 ImageProcessClass imageProcessClass = new ImageProcessClass();
 
-                HashMap<String,String> HashMapParams = new HashMap<String,String>();
+                HashMap<String, String> HashMapParams = new HashMap<String, String>();
 
                 HashMapParams.put(ImageTag, GetImageNameFromEditText);
 
                 HashMapParams.put(ImageName, ConvertImage);
 
-                HashMapParams.put(ImageEmotionIndex,GetImageEmotionIndex);
+                HashMapParams.put(ImageEmotionIndex, GetImageEmotionIndex);
 
-                HashMapParams.put(ImageEmotionArea,GetImageEmotionArea);
+                HashMapParams.put(ImageEmotionArea, GetImageEmotionArea);
 
-                HashMapParams.put(ImageEmotionPoint,GetImageEmotionPoint);
+                HashMapParams.put(ImageEmotionPoint, GetImageEmotionPoint);
 
-                HashMapParams.put(ImageLongitude,GetImageLongitude);
+                HashMapParams.put(ImageLongitude, GetImageLongitude);
 
-                HashMapParams.put(ImageLatitude,GetImageLatitude);
+                HashMapParams.put(ImageLatitude, GetImageLatitude);
 
                 String FinalData = imageProcessClass.ImageHttpRequest("http://140.134.26.3/AndroidUploadImage/upload-image-to-server.php", HashMapParams);
 
@@ -530,6 +558,7 @@ public class MainActivity extends AppCompatActivity {
         }
         AsyncTaskUploadClass AsyncTaskUploadClassOBJ = new AsyncTaskUploadClass();
         AsyncTaskUploadClassOBJ.execute();
+
     }
 
 
