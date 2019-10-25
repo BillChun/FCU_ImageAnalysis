@@ -21,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -84,7 +85,9 @@ public class MainActivity extends AppCompatActivity {
     private Button button1;
     private Button reset;
     private Button global;
-    private LocationManager locationManager;
+    //private
+    LocationManager locationManager;
+    LocationListener locationListener;
     private String commandStr;
     private Context context;
     public static final int My_PERMISSION_COARSE_LOCATION = 11;
@@ -125,6 +128,16 @@ public class MainActivity extends AppCompatActivity {
 
     TextClock textclock;
 
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults.length > 0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
+            if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED) {
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+            }
+        }
+
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -137,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         button1 = (Button)findViewById(R.id.button1);
 
 
-        commandStr = LocationManager.NETWORK_PROVIDER;
+        //commandStr = LocationManager.NETWORK_PROVIDER;
 
 
         //時間設定
@@ -184,11 +197,45 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView textView3 = textView;
 
-        button1.setOnClickListener(new View.OnClickListener()
+        //GPS 取得緯度
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+
+                textLoc.setText("經度" + location.getLongitude() + "\n緯度" + location.getLatitude());
+                GetImageLongitude  = String.valueOf(location.getLongitude());
+                GetImageLatitude = String.valueOf(location.getLatitude());
+
+            }
+
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String s) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String s) {
+
+            }
+
+        };
+        if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String []{Manifest.permission.ACCESS_FINE_LOCATION},1);
+        }else{
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+        }
+
+        /*button1.setOnClickListener(new View.OnClickListener()
         {
             public void onClick (View view)
             {
-                locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+                //ocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
                 if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                         && ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
@@ -221,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
                 GetImageLongitude  = String.valueOf(location.getLongitude());
                 GetImageLatitude = String.valueOf(location.getLatitude());
             }
-        });
+        });*/
 
 
 
@@ -292,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public LocationListener locationListener = new LocationListener()
+    /*public LocationListener locationListener = new LocationListener()
     {
 
         @Override
@@ -315,7 +362,9 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-    };
+    };*/
+
+
 
 
 
