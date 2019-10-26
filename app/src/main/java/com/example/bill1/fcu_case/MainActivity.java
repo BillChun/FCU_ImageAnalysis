@@ -326,20 +326,20 @@ public class MainActivity extends AppCompatActivity {
 
                 if(mNetworkInfo == null)
                 {
-                    Toast toast = Toast.makeText(MainActivity.this, "行動數據或WIFI尚未開請!!", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(MainActivity.this, "行動數據或WIFI尚未開啟!!", Toast.LENGTH_LONG);
                     toast.show();
                 }
-                else if(GetImageNameFromEditText.matches("") || bitmap == null) {
-                    Toast toast = Toast.makeText(MainActivity.this, "尚未放入照片及名稱，請再次確認!!", Toast.LENGTH_LONG);
+                else if(GetImageNameFromEditText.matches("") && bitmap == null) {
+                    Toast toast = Toast.makeText(MainActivity.this, "尚未放入影像及照片內容，請再次確認!!", Toast.LENGTH_LONG);
                     toast.show();
                 }
                 else if(GetImageNameFromEditText.matches("")) {
-                    Toast toast = Toast.makeText(MainActivity.this, "沒有填入照片名稱，請再次確認!!", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(MainActivity.this, "沒有填入照片內容，請再次確認!!", Toast.LENGTH_LONG);
                     toast.show();
                 }
                 else if(bitmap == null)
                 {
-                    Toast toast = Toast.makeText(MainActivity.this, "沒有選擇照片，請再次確認!!", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(MainActivity.this, "沒有選擇照影像，請再次確認!!", Toast.LENGTH_LONG);
                     toast.show();
                 }
                 else if(GetImageLongitude == null&&GetImageLatitude == null)
