@@ -176,7 +176,7 @@
             <LinearLayout
                 android:id="@+id/ivItemFour"
                 android:layout_width="match_parent"
-                android:layout_height="90dp"
+                android:layout_height="100dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
@@ -220,13 +220,14 @@
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/ivItemFive"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:layout_marginEnd="5dp"
+                android:layout_height="170dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
                 android:background="@drawable/bgitemx"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -261,7 +262,7 @@
 
                         android:id="@+id/progress"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="50dp"
                         android:layout_toLeftOf="@+id/text1"
                         android:max="10"
                         android:maxHeight="1dp"
@@ -274,15 +275,6 @@
                         android:progressDrawable="@drawable/layer_progress"
                         android:thumb="@drawable/shape_circle" />
 
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="-30dp"
-                        android:text="-5                 0                  5"
-                        android:textColor="#B9B9B9"
-                        android:textSize="18sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -293,29 +285,36 @@
                             android:id="@+id/textView2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginTop="6dp"
+                            android:layout_marginTop="1dp"
                             android:text="感受程度指數:"
-                            android:textColor="#B9B9B9"
+
                             android:textSize="18sp" />
 
                         <TextView
                             android:id="@+id/text1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginTop="6dp"
                             android:layout_alignParentRight="true"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginTop="1dp"
                             android:gravity="left"
                             android:padding="6dp"
-                            android:text="0(拖動指標顯示分數)"
+                            android:text="0"
                             android:textColor="#16BC5C"
                             android:textSize="18dp" />
+
                     </LinearLayout>
 
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="拖動指標顯示分數"
+                        android:textColor="#B9B9B9"
+                        android:textSize="18sp" />
 
                 </LinearLayout>
-
 
 
             </LinearLayout>
@@ -396,59 +395,7 @@
 
 
 
-            <LinearLayout
-                android:id="@+id/ivItemTwo"
-                android:layout_width="match_parent"
-                android:layout_height="90dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/bgitemx"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivItemTwo">
 
-                <Button
-                    android:id="@+id/butCan"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:onClick="btCancel"
-                    android:background="@drawable/again" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/ivItemTwoTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="12dp"
-                        android:text="重新填寫"
-                        android:textColor="#0D1D55"
-                        android:textSize="22sp" />
-
-                    <TextView
-                        android:id="@+id/ivItemTwoSubTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="6dp"
-                        android:text="清除資料、重新載入"
-                        android:textColor="#B9B9B9"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-
-
-            </LinearLayout>
 
 
             <LinearLayout
@@ -496,6 +443,61 @@
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="6dp"
                         android:text="上傳感知到資料庫"
+                        android:textColor="#B9B9B9"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ivItemTwo"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bgitemx"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivItemTwo">
+
+                <Button
+                    android:id="@+id/butCan"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:onClick="btCancel"
+                    android:background="@drawable/again" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/ivItemTwoTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:text="重新填寫"
+                        android:textColor="#0D1D55"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/ivItemTwoSubTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="6dp"
+                        android:text="清除資料、重新載入"
                         android:textColor="#B9B9B9"
                         android:textSize="18sp" />
 
