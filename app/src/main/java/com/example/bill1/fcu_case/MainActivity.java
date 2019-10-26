@@ -209,10 +209,7 @@ public class MainActivity extends AppCompatActivity {
                 textLoc.setText("經度" + location.getLongitude() + "\n緯度" + location.getLatitude());
                 GetImageLongitude  = String.valueOf(location.getLongitude());
                 GetImageLatitude = String.valueOf(location.getLatitude());
-                /*if(String.valueOf(location.getLongitude()).matches("")||String.valueOf(location.getLatitude()).matches("")) {
-                    Toast toast = Toast.makeText(MainActivity.this, "GPS，請再次確認!!", Toast.LENGTH_LONG);
-                    toast.show();
-                }*/
+
 
             }
 
@@ -326,20 +323,20 @@ public class MainActivity extends AppCompatActivity {
 
                 if(mNetworkInfo == null)
                 {
-                    Toast toast = Toast.makeText(MainActivity.this, "行動數據或WIFI尚未開啟!!", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(MainActivity.this, "行動數據 或 Wifi 尚未開啟", Toast.LENGTH_LONG);
                     toast.show();
                 }
                 else if(GetImageNameFromEditText.matches("") && bitmap == null) {
-                    Toast toast = Toast.makeText(MainActivity.this, "尚未放入影像及照片內容，請再次確認!!", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(MainActivity.this, "尚未放入影像及照片內容，請再次確認", Toast.LENGTH_LONG);
                     toast.show();
                 }
                 else if(GetImageNameFromEditText.matches("")) {
-                    Toast toast = Toast.makeText(MainActivity.this, "沒有填入照片內容，請再次確認!!", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(MainActivity.this, "沒有填入照片內容，請再次確認", Toast.LENGTH_LONG);
                     toast.show();
                 }
                 else if(bitmap == null)
                 {
-                    Toast toast = Toast.makeText(MainActivity.this, "沒有選擇照影像，請再次確認!!", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(MainActivity.this, "沒有選擇照影像，請再次確認", Toast.LENGTH_LONG);
                     toast.show();
                 }
                 else if(GetImageLongitude == null&&GetImageLatitude == null)
@@ -361,13 +358,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        //重啟方法
         reset.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                Intent restartIntent = getBaseContext().getPackageManager()
-                        .getLaunchIntentForPackage(getBaseContext().getPackageName());
-                restartIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(restartIntent);
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
             }
         });
     }
@@ -469,7 +466,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(MainActivity.this, "選擇圖片失敗!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "選擇圖片失敗", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -481,7 +478,7 @@ public class MainActivity extends AppCompatActivity {
             image_view.setImageBitmap(bitmap);
             UploadImageOnServerButton.setVisibility(View.VISIBLE);
             //  saveImage(thumbnail);
-            Toast.makeText(this, "拍攝成功!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "拍攝成功", Toast.LENGTH_SHORT).show();
         }
     }
 
